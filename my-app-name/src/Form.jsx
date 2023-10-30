@@ -19,13 +19,17 @@ function Form() {
             errors['phone'] = 'Please provide a valid phone number';
         }
         setValidationErrors(errors);
-    })
+    }, [name, email, phone])
     return (
         <>
             <form>
-                Name<input type="text"/>
-                Email<input type="text"/>
-                Phone <input type="text"/>
+                Name<input onChange = {(e) => {
+                    setName(e.target.value);
+                    console.log(e.target.value);
+                }} value = {name} type="text"/>
+
+                Email<input onChange = {e => setEmail(e.target.value)} value = {email} type="text"/>
+                Phone <input onChange = {e => setPhone(e.target.value)} value = {phone} type="text"/>
                 <select>
                     <option value="Home">Home</option>
                     <option value="Work">Work</option>
