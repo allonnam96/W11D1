@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from 'react';
 import Message from "./components/Message";
 import PictureDisplay from "./components/PictureDisplay";
 
@@ -11,6 +12,14 @@ function App() {
   const [isBrown, setIsBrown] = useState(false);
   const [isLightBrown, setIsLightBrown] = useState(false);
   const [isYellow, setIsYellow] = useState(false);
+
+  useEffect(() => {
+    console.log('Color Change :: red?', isRed)
+    console.log('Color Change :: orange?', isOrange)
+    console.log('Color Change :: brown?', isBrown)
+    console.log('Color Change :: light brown?', isLightBrown)
+    console.log('Color Change :: yellow', isYellow)
+  },[isRed, isOrange, isBrown, isLightBrown, isYellow]);
 
   return (
     <>
