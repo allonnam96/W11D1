@@ -22,7 +22,7 @@ function Form() {
         setValidationErrors(errors);
     }, [name, email, phone])
 
-    const onSubmit = e => {
+    const handleSubmit = e => {
         e.preventDefault();
 
         setHasSubmitted(true);
@@ -35,7 +35,7 @@ function Form() {
 
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 Name<input onChange = {(e) => {setName(e.target.value)}} value = {name} type="text"/>
                     <div className='error'>
                         {hasSubmitted && validationErrors.name && `* ${validationErrors.name}`}
@@ -57,7 +57,7 @@ function Form() {
                     <input type="radio" name="staff" value="Instructor"/>Instructor
                     <input type="radio" name="staff" value="Student"/>Student
                 </label>
-                Bio<input type="text-area"/>
+                Bio<textarea/>
                 <label>Email Notifs?
                     <input type="checkbox" name="notifications"/>
                 </label>
