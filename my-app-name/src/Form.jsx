@@ -5,6 +5,7 @@ function Form() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
         const errors = {};
@@ -20,16 +21,33 @@ function Form() {
         }
         setValidationErrors(errors);
     }, [name, email, phone])
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        setHasSubmitted(true);
+        if (Object.values(validationErrors).length)
+            return alert(`The following errors were found:
+                ${validationErrors.name ? "* " + validationErrors.name: ""}
+                ${validationErrors.email ? "* " + validationErrors.email: ""}
+                ${validationErrors.phone ? "* " + validationErrors.phone: ""}`);
+    }
+
     return (
         <>
             <form>
-                Name<input onChange = {(e) => {
-                    setName(e.target.value);
-                    console.log(e.target.value);
-                }} value = {name} type="text"/>
-
+                Name<input onChange = {(e) => {setName(e.target.value)}} value = {name} type="text"/>
+                    <div className='error'>
+                        {hasSubmitted && validationErrors.name && `* ${validationErrors.name}`}
+                    </div>
                 Email<input onChange = {e => setEmail(e.target.value)} value = {email} type="text"/>
+                    <div className='error'>
+                        {hasSubmitted && validationErrors.email && `* ${validationErrors.email}`}
+                    </div>
                 Phone <input onChange = {e => setPhone(e.target.value)} value = {phone} type="text"/>
+                    <div className='error'>
+                        {hasSubmitted && validationErrors.phone && `* ${validationErrors.phone}`}
+                    </div>
                 <select>
                     <option value="Home">Home</option>
                     <option value="Work">Work</option>
@@ -43,6 +61,8 @@ function Form() {
                 <label>Email Notifs?
                     <input type="checkbox" name="notifications"/>
                 </label>
+
+                <input type="submit" />
             
             </form>
         </>
