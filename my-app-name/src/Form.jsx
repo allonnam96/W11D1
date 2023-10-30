@@ -32,6 +32,7 @@ function Form() {
                 ${validationErrors.email ? "* " + validationErrors.email: ""}
                 ${validationErrors.phone ? "* " + validationErrors.phone: ""}`);
     }
+    
 
     return (
         <>

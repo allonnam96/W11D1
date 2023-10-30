@@ -28,6 +28,23 @@ function PictureDisplay ({ size, featherCount, featherColors }) {
   // useEffect (() => {console.log('PictureDisplay', size, featherCount, featherColors)}, [size, featherCount, featherColors]);
   useEffect(() => {
     console.log('PictureDisplay size', size);
+    let cname = "";
+    switch (size){
+      case 'm':
+        cname = "medium";
+        break;
+      case 'l':
+        cname = "large";
+        break;
+      case 'xl':
+        cname = "xlarge";
+        break;
+      default:
+        cname = "small";
+        break;
+    }
+    
+    console.log(cname);
   }, [size]);
 
   useEffect(() => {
